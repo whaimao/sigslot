@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string.h>
+#include <unistd.h>
 #include "sigslot.h"
 using namespace sigslot;
 class Sender{
@@ -9,20 +10,20 @@ class Sender{
 			signalSender("help", 1);
 		}
 		void help2(){
-			signalSender("help,hahah,just test");
+			signalSender("help,hahah,just test",2);
 		}
 	
-}
+};
 class Recevier:public sigslot::has_slots<>{
 	public:
 		void onRecevier(std::string message, int type){//参数与Sender 中的signalSender要一致
 			if(type == 1){
 				std::cout << "I'am help() slot" <<std::endl;
 			}else{
-				std::cout << "I'm help2() slot" << std::end1;
+				std::cout << "I'm help2() slot" << std::endl;
 			}
 		}
-}
+};
 int main(void){
 	
 	Sender s1;
